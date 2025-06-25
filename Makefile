@@ -19,7 +19,7 @@ main.o: main.cpp drawings.hpp parser.tab.h
 	g++ -c main.cpp
 
 main: drawings.o main.o parser.tab.o lex.yy.o
-	g++ -o main drawings.o main.o parser.tab.o lex.yy.o -lsfml-graphics -lsfml-window -lsfml-system -lvosk
+	g++ -o main drawings.o main.o parser.tab.o lex.yy.o -lsfml-graphics -lsfml-window -lsfml-system
 
 clean:
 	rm -f parser.tab.* lex.yy.* *.o main
