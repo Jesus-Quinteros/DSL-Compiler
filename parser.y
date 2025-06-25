@@ -14,8 +14,9 @@ void yyerror(const char* s);
     char* s;
 }
 
-%token QUIERO DIBUJAR FIGURA FIN
-%token <c> CARACTER DIGITO
+%token QUIERO DIBUJAR FIN
+%token <c> CARACTER
+%token <c> DIGITO
 %token <s> FIG
 
 %%
@@ -30,10 +31,18 @@ elementos:
     ;
 
 elemento:
-    CARACTER           { dibujarLetra($1); }
-  | DIGITO             { dibujarNumero($1); }
-  | FIG                { dibujarFigura($1); free($1); }
-  ;
+    CARACTER                { dibujarLetra($1); }
+
+  | DIGITO FIG              { 
+                               int cantidad = $1 - '0'; 
+                               for (int i = 0; i < cantidad; ++i)
+                                 dibujarFigura($2); 
+                               free($2); 
+                            }
+
+  | FIG                     { dibujarFigura($1); free($1); }
+
+  | DIGITO                  { dibujarNumero($1); }
 
 %%
 void yyerror(const char* s) {

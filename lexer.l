@@ -40,7 +40,11 @@ extern YYSTYPE yylval;
 "y"              { yylval.c = 'Y'; return CARACTER; }
 "seta"           { yylval.c = 'Z'; return CARACTER; }
 
-"circulo"       { yylval.s = strdup("circulo"); return FIG; }
+"circulos"       { yylval.s = strdup("circulo"); return FIG; }
+"cuadrados"      { yylval.s = strdup("cuadrado"); return FIG; }
+"triángulos"     { yylval.s = strdup("triangulo"); return FIG; }
+
+"círculo"       { yylval.s = strdup("circulo"); return FIG; }
 "cuadrado"      { yylval.s = strdup("cuadrado"); return FIG; }
 "triángulo"     { yylval.s = strdup("triangulo"); return FIG; }
 
