@@ -35,7 +35,9 @@ bloque_I:
     LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos COMILLA LLAVE_C;
 
 bloque_F:
-    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C;
+    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C
+    | LLAVE_A TEXT DP COMILLA FIN COMILLA LLAVE_C
+    ;
 
 bloques:
     bloques bloque
