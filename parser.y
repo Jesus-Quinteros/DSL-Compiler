@@ -29,36 +29,39 @@ programa:
     ;
 
 bloque_unico:
-    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos FIN COMILLA LLAVE_C
+    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos FIN COMILLA LLAVE_C;
 
 bloque_I:
-    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos COMILLA LLAVE_C
+    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos COMILLA LLAVE_C;
 
 bloque_F:
-    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C
+    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C;
 
 bloques:
     bloques bloque
     | bloque
-;
+    ;
 
 bloque:
     LLAVE_A TEXT DP COMILLA elementos COMILLA LLAVE_C
     ;
 
 elementos:
-    CARACTER                { dibujarLetra($1); }
+    elementos elemento
+    | elemento
+    ;
 
+elemento:
+    CARACTER                { dibujarLetra($1); }
   | DIGITO FIG              { 
                                int cantidad = $1 - '0'; 
                                for (int i = 0; i < cantidad; ++i)
                                  dibujarFigura($2); 
                                free($2); 
                             }
-
   | FIG                     { dibujarFigura($1); free($1); }
-
   | DIGITO                  { dibujarNumero($1); }
+  ;
 
 %%
 void yyerror(const char* s) {

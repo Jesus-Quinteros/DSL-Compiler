@@ -49,11 +49,11 @@ extern YYSTYPE yylval;
 "cuadrado"      { yylval.s = strdup("cuadrado"); return FIG; }
 "triángulo"     { yylval.s = strdup("triangulo"); return FIG; }
 
-"á"              { yylval.c = 'A'; return CARACTER; }
-"é"              { yylval.c = 'E'; return CARACTER; }
-"í"              { yylval.c = 'I'; return CARACTER; }
-"ó"              { yylval.c = 'O'; return CARACTER; }
-"ú"              { yylval.c = 'U'; return CARACTER; }
+[áa]   { yylval.c = 'A'; return CARACTER; }
+[ée]   { yylval.c = 'E'; return CARACTER; }
+[íi]   { yylval.c = 'I'; return CARACTER; }
+[óo]   { yylval.c = 'O'; return CARACTER; }
+[úu]   { yylval.c = 'U'; return CARACTER; }
 
 "cero"              { yylval.c = '0'; return DIGITO; }
 "uno"              { yylval.c = '1'; return DIGITO; }
