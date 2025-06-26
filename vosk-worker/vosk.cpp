@@ -26,7 +26,7 @@ int main() {
       const char* result = vosk_recognizer_result(recognizer);
       printf("%s\n", result);
       // Guardar resultado en un archivo
-      FILE* out = fopen("vosk-worker/instrucciones.txt", "w");
+      FILE* out = fopen("vosk-worker/instrucciones.txt", "a");
       if (out) {
         fprintf(out, "%s\n", result);
         fclose(out);
