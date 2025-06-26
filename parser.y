@@ -14,6 +14,7 @@ void yyerror(const char* s);
     char* s;
 }
 
+%token LLAVE_A LLAVE_C TEXT DP COMILLA
 %token QUIERO DIBUJAR FIN
 %token <c> CARACTER
 %token <c> DIGITO
@@ -22,15 +23,30 @@ void yyerror(const char* s);
 %%
 
 programa:
-    QUIERO DIBUJAR elementos FIN
+    bloque_unico
+    | bloque_I bloque_F
+    | bloque_I bloques bloque_F
+    ;
+
+bloque_unico:
+    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos FIN COMILLA LLAVE_C
+
+bloque_I:
+    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos COMILLA LLAVE_C
+
+bloque_F:
+    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C
+
+bloques:
+    bloques bloque
+    | bloque
+;
+
+bloque:
+    LLAVE_A TEXT DP COMILLA elementos COMILLA LLAVE_C
     ;
 
 elementos:
-    elementos elemento
-    | elemento
-    ;
-
-elemento:
     CARACTER                { dibujarLetra($1); }
 
   | DIGITO FIG              { 
