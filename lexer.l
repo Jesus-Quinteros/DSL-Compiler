@@ -8,10 +8,11 @@ extern YYSTYPE yylval;
 
 %%
 
-"{"              { }
-"\"text\""       { }
-":"              { }
-"\""             { }
+"{"              { return LLAVE_A; }
+"\"text\""       { return TEXT; }
+":"              { return DP; }
+"\""             { return COMILLA; }
+"}"              { return LLAVE_C; }
 
 "quiero"        { return QUIERO; }
 "dibujar"       { return DIBUJAR; }
@@ -64,8 +65,6 @@ extern YYSTYPE yylval;
 "siete"              { yylval.c = '7'; return DIGITO; }
 "ocho"              { yylval.c = '8'; return DIGITO; }
 "nueve"              { yylval.c = '9'; return DIGITO; }
-
-"}"              { }
 
 [ \t\n\r]+      { }
 
