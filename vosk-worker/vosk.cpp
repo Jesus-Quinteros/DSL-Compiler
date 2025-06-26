@@ -20,6 +20,12 @@ int main() {
 
   int16_t buffer[FRAMES_PER_BUFFER];
 
+  // Limpiar el archivo antes de comenzar
+  FILE* clear = fopen("vosk-worker/instrucciones.txt", "w");
+  if (clear) {
+    fclose(clear);
+  }
+
   while (true) {
     Pa_ReadStream(stream, buffer, FRAMES_PER_BUFFER);
     if (vosk_recognizer_accept_waveform(recognizer, (const char*)buffer, sizeof(buffer))) {
