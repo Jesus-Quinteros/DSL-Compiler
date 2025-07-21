@@ -1,8 +1,11 @@
 %{
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "drawings.hpp"
 
+extern int yylineno;
+extern int yycolumn;
 extern int yylex();
 extern int yyparse();
 extern FILE* yyin;
@@ -14,31 +17,34 @@ void yyerror(const char* s);
     char* s;
 }
 
-%token LLAVE_A LLAVE_C TEXT DP COMILLA
-%token QUIERO DIBUJAR FIN
+%token llave_apertura llave_cierre text dp comilla
+%token inicio fin
 %token <c> CARACTER
 %token <c> DIGITO
 %token <s> FIG
+%token <vacio> ignorar
 
 %%
 
 programa:
     bloque_unico
-    | bloque_I bloque_F
-    | bloque_I bloques bloque_F
+    | bloque_inicial bloque_final
+    | bloque_inicial bloques bloque_final
     ;
 
 bloque_unico:
-    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos FIN COMILLA LLAVE_C
-    | LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR FIN COMILLA LLAVE_C
+    llave_apertura text dp comilla inicio elementos fin comilla llave_cierre
+    | llave_apertura text dp comilla inicio fin comilla llave_cierre
     ;
 
-bloque_I:
-    LLAVE_A TEXT DP COMILLA QUIERO DIBUJAR elementos COMILLA LLAVE_C;
+bloque_inicial:
+    llave_apertura text dp comilla inicio elementos comilla llave_cierre
+    | llave_apertura text dp comilla inicio comilla llave_cierre
+    ;
 
-bloque_F:
-    LLAVE_A TEXT DP COMILLA elementos FIN COMILLA LLAVE_C
-    | LLAVE_A TEXT DP COMILLA FIN COMILLA LLAVE_C
+bloque_final:
+    llave_apertura text dp comilla elementos fin comilla llave_cierre
+    | llave_apertura text dp comilla fin comilla llave_cierre
     ;
 
 bloques:
@@ -47,12 +53,14 @@ bloques:
     ;
 
 bloque:
-    LLAVE_A TEXT DP COMILLA elementos COMILLA LLAVE_C
+    llave_apertura text dp comilla elementos comilla llave_cierre
     ;
 
 elementos:
     elementos elemento
+    | elementos ignorar
     | elemento
+    | ignorar
     ;
 
 elemento:
@@ -69,5 +77,6 @@ elemento:
 
 %%
 void yyerror(const char* s) {
-    std::cerr << "Error de sintaxis: " << s << std::endl;
+    fprintf(stderr, "Error de sintaxis en linea %d, columna %d: %s\n", yylineno, yycolumn, s);
+    //exit(EXIT_FAILURE);
 }

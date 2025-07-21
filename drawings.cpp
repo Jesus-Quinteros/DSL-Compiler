@@ -93,8 +93,8 @@ void mostrarVentana() {
           case sf::Keyboard::Scancode::S: view.move({0, moveSpeed}); break;
           case sf::Keyboard::Scancode::A: view.move({-moveSpeed, 0}); break;
           case sf::Keyboard::Scancode::D: view.move({moveSpeed, 0}); break;
-          case sf::Keyboard::Scancode::Q: view.zoom(1.0f / zoomFactor); break;
-          case sf::Keyboard::Scancode::E: view.zoom(zoomFactor); break;
+          case sf::Keyboard::Scancode::Q: view.zoom(zoomFactor); break;
+          case sf::Keyboard::Scancode::E: view.zoom(1.0f / zoomFactor); break;
           default: break;
         }
       } else if (auto buttonPressed = event->getIf<sf::Event::MouseButtonPressed>()) {

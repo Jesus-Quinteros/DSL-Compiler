@@ -8,7 +8,7 @@ extern FILE* yyin;
 extern int yyparse();
 
 int main() {
-  std::cout << "Inicio del programa\n";
+  std::cout << "Programa iniciado\n";
 
   std::cout << "Ejecutando reconocimiento de voz (vosk.exe)...\n";
   int resultado = system("vosk-worker\\vosk.exe");
@@ -19,7 +19,7 @@ int main() {
 
   const char* archivoDeEntrada = "vosk-worker/instrucciones.txt";
 
-  std::cout << "Abriendo archivo de INSTRUCCIONES: " << archivoDeEntrada << std::endl;
+  std::cout << "Abriendo archivo de instrucciones: " << archivoDeEntrada << std::endl;
   yyin = fopen(archivoDeEntrada, "r");
   if (!yyin) {
     std::cerr << "No se pudo abrir el archivo: " << archivoDeEntrada << std::endl;
