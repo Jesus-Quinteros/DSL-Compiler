@@ -33,10 +33,10 @@ se([ \t\n\r\"]|$)                           { printf("ELEMENTO: %s\n", yytext); 
 de([ \t\n\r\"]|$)                           { printf("ELEMENTO: %s\n", yytext); yylval.c = 'D'; yyless(yyleng - 1); return CARACTER; }
 efe([ \t\n\r\"]|$)                          { printf("ELEMENTO: %s\n", yytext); yylval.c = 'F'; yyless(yyleng - 1); return CARACTER; }
 ge([ \t\n\r\"]|$)                           { printf("ELEMENTO: %s\n", yytext); yylval.c = 'G'; yyless(yyleng - 1); return CARACTER; }
-(hache|che)([ \t\n\r\"]|$)                  { printf("ELEMENTO: %s\n", yytext); yylval.c = 'H'; yyless(yyleng - 1); return CARACTER; }
+(hache|che|hace)([ \t\n\r\"]|$)                  { printf("ELEMENTO: %s\n", yytext); yylval.c = 'H'; yyless(yyleng - 1); return CARACTER; }
 jota([ \t\n\r\"]|$)                         { printf("ELEMENTO: %s\n", yytext); yylval.c = 'J'; yyless(yyleng - 1); return CARACTER; }
 ca([ \t\n\r\"]|$)                           { printf("ELEMENTO: %s\n", yytext); yylval.c = 'K'; yyless(yyleng - 1); return CARACTER; }
-ele([ \t\n\r\"]|$)                          { printf("ELEMENTO: %s\n", yytext); yylval.c = 'L'; yyless(yyleng - 1); return CARACTER; }
+(e[ \t]le|ele)([ \t\n\r\"]|$)                          { printf("ELEMENTO: %s\n", yytext); yylval.c = 'L'; yyless(yyleng - 1); return CARACTER; }
 m([ \t\n\r\"]|$)                            { printf("ELEMENTO: %s\n", yytext); yylval.c = 'M'; yyless(yyleng - 1); return CARACTER; }
 ene([ \t\n\r\"]|$)                          { printf("ELEMENTO: %s\n", yytext); yylval.c = 'N'; yyless(yyleng - 1); return CARACTER; }
 (pe|p)([ \t\n\r\"]|$)                       { printf("ELEMENTO: %s\n", yytext); yylval.c = 'P'; yyless(yyleng - 1); return CARACTER; }
